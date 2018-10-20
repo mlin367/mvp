@@ -17,6 +17,7 @@ const getTopTracks = (data, token) => {
         reject(err);
       } else {
         body = JSON.parse(body);
+        body.data = data;
         resolve(body);
       }
     })

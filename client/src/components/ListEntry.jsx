@@ -6,7 +6,8 @@ const ListEntry = (props) => (
     <div>
       <img src={props.artist.image}></img>
       <p>Followers: {props.artist.followers}</p>
-      <p>Genres: {props.artist.genres}</p>   
+      <p>Genres: {props.artist.genres}</p>
+      <p>Top Tracks: {props.artist.topTracks}</p>   
     </div>
   </div>
 );

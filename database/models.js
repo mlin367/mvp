@@ -7,7 +7,8 @@ const MusicArtist = connection.define('mArtist', {
   followers: { type: Sequelize.INTEGER },
   urlId: { type: Sequelize.STRING },
   genres: { type: Sequelize.STRING },
-  image: { type: Sequelize.STRING },  
+  image: { type: Sequelize.STRING },
+  topTracks: { type: Sequelize.STRING }  
 }, {
   timestamps: false
 });

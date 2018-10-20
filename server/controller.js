@@ -16,7 +16,8 @@ module.exports = {
     let artist = req.body.name;
     getToken()
       .then(token => {
-      getArtistInfo(artist, token)
+        return getArtistInfo(artist, token)
+      })
       .then(info => {
         let data = {
           name: info.artists.items[0].name,
@@ -24,17 +25,19 @@ module.exports = {
           urlId: info.artists.items[0].id,
           genres: JSON.stringify(info.artists.items[0].genres),
           image : info.artists.items[0].images[2].url
-        }
-        getTopTracks(data, info.token)
-        .then(topTrackInfo => {
-
-        })
-        MusicArtist.create(data)
+        };
+        return getTopTracks(data, info.token)
+      })
+      .then(topTrackInfo => {
+        let topTracks = topTrackInfo.tracks.map(obj => {
+          return obj.name;
+        });
+        topTrackInfo.data.topTracks = JSON.stringify(topTracks);
+        MusicArtist.create(topTrackInfo.data)
           .then(newArtist => {
             res.status(201).send('post sucess')
           })
           .catch(err => console.error(err));
-      })
     })
   },
   delete: (req, res) => {
