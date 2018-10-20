@@ -19,6 +19,9 @@ module.exports = {
         return getArtistInfo(artist, token)
       })
       .then(info => {
+        if (info.artists.items.length < 1) {
+          throw ('artist with that name not found!')
+        }
         let data = {
           name: info.artists.items[0].name,
           followers: info.artists.items[0].followers.total,
@@ -35,10 +38,13 @@ module.exports = {
         topTrackInfo.data.topTracks = JSON.stringify(topTracks);
         MusicArtist.create(topTrackInfo.data)
           .then(newArtist => {
-            res.status(201).send('post sucess')
+            res.status(201).send('post success')
           })
           .catch(err => console.error(err));
-    })
+      })
+      .catch(err => {
+        console.error(err);
+      })
   },
   delete: (req, res) => {
     let artist = req.query.name;
