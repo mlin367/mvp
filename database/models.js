@@ -14,6 +14,6 @@ const MusicArtist = connection.define('mArtist', {
 
 connection.sync()
   .then(console.log('MySQL database synced'))
-  .catch(err => console.err('Failed to sync MySQL database'));
+  .catch(err => console.error('Failed to sync MySQL database'));
 
 module.exports = { MusicArtist };

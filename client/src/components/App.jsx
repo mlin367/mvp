@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
       <div>
         <h1> Spotify Artist Data </h1>
-        <Search />
+        {/* <Search /> */}
           
       </div>
     );
