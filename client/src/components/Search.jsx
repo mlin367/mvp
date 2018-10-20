@@ -7,7 +7,8 @@ class Search extends React.Component {
       input: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   handleInputChange(e) {
@@ -16,16 +17,20 @@ class Search extends React.Component {
     })
   }
 
-  handleButtonClick(e) {
+  handleSearchClick(e) {
     this.props.search(this.state.input);
   }
 
+  handleDeleteClick(e) {
+    this.props.delete(this.state.input);
+  }
 
   render() {
     return (
       <div>
        <input onChange={this.handleInputChange}></input>
-       <button onClick={this.handleButtonClick}>Search for Artist</button>
+       <button onClick={this.handleSearchClick}>Search for Artist</button>
+       <button onClick={this.handleDeleteClick}>Delete Artist</button>
       </div>
     )
   }

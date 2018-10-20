@@ -10,6 +10,7 @@ class App extends React.Component {
       artists: []
     };
     this.search = this.search.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   componentDidMount() {
@@ -42,11 +43,24 @@ class App extends React.Component {
     })
   }
 
+  delete(artist) {
+    axios.delete('/artists' ,{
+      params: {name: artist}
+    })
+    .then(res => {
+      console.log(res);
+      this.fetch();
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  }
+
   render() {
     return (
       <div>
         <h1> Spotify Artist Data </h1>
-        <Search search={this.search}/>
+        <Search search={this.search} delete={this.delete}/>
         <List artists={this.state.artists} />
       </div>
     );

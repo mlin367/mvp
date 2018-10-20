@@ -52,7 +52,7 @@ module.exports = {
       where: { name: artist }
     })
     .then(deletedArtist => {
-      res.status(202).send(`${artist} deleted`);
+      res.status(202).send(`${deletedArtist} deleted`);
     })
     .catch(err => console.error(err));
   }
