@@ -4,11 +4,13 @@ const connection = require('./index');
 const MusicArtist = connection.define('mArtist', {
   id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
   name: { type: Sequelize.STRING, allowNull: false} ,
-  listeners: { type: Sequelize.INTEGER },
-  plays: { type: Sequelize.INTEGER },
+  followers: { type: Sequelize.INTEGER },
+  urlId: { type: Sequelize.STRING },
   genres: { type: Sequelize.STRING },
-  image: { type: Sequelize.STRING }
-})
+  image: { type: Sequelize.STRING },  
+}, {
+  timestamps: false
+});
 
 connection.sync()
   .then(console.log('MySQL database synced'))
