@@ -1,5 +1,6 @@
 const { MusicArtist } = require('../database/models');
 const getArtistInfo = require('../spotify/spotify.js');
+const getTopTracks = require('../spotify/getTopTracks.js');
 const getToken = require('../config');
 
 module.exports = {
@@ -15,23 +16,26 @@ module.exports = {
     let artist = req.body.name;
     getToken()
       .then(token => {
-        getArtistInfo(artist, token)
-        .then(info => {
-          info = JSON.parse(info);
-          let data = {
-            name: info.artists.items[0].name,
-            followers: info.artists.items[0].followers.total,
-            urlId: info.artists.items[0].id,
-            genres: JSON.stringify(info.artists.items[0].genres),
-            image : info.artists.items[0].images[2].url
-          }
-          MusicArtist.create(data)
-            .then(newArtist => {
-              res.status(201).send('post sucess')
-            })
-            .catch(err => console.error(err));
+      getArtistInfo(artist, token)
+      .then(info => {
+        let data = {
+          name: info.artists.items[0].name,
+          followers: info.artists.items[0].followers.total,
+          urlId: info.artists.items[0].id,
+          genres: JSON.stringify(info.artists.items[0].genres),
+          image : info.artists.items[0].images[2].url
+        }
+        getTopTracks(data, info.token)
+        .then(topTrackInfo => {
+
         })
+        MusicArtist.create(data)
+          .then(newArtist => {
+            res.status(201).send('post sucess')
+          })
+          .catch(err => console.error(err));
       })
+    })
   },
   delete: (req, res) => {
     let artist = req.query.name;

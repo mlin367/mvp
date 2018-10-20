@@ -1,12 +1,10 @@
 const request = require('request');
 const Promise = require('bluebird');
 
-const getArtistInfo = (artist, token) => {
-  let options;
-  artist = encodeURIComponent(artist.trim());
+const getTopTracks = (data, token) => {
   return new Promise((resolve, reject) => {
-    options = {
-      url: `https://api.spotify.com/v1/search?q=${artist}&type=artist&market=US&limit=1`,
+    let options = {
+      url: `https://api.spotify.com/v1/artists/${data.urlId}/top-tracks?country=SE`,
       method: 'GET',
       headers: {
         "Accept": "application/json",
@@ -19,11 +17,10 @@ const getArtistInfo = (artist, token) => {
         reject(err);
       } else {
         body = JSON.parse(body);
-        body.token = token;
         resolve(body);
       }
     })
   })
 };
 
-module.exports = getArtistInfo;
+module.exports = getTopTracks;
