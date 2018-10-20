@@ -19,17 +19,28 @@ Once the project moves into development, the press release can be used as a touc
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
 
+  Music Artist Information
+
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+
+  A website where one can search for information about a music artist.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
+  Find information about a music artist such as their songs, albums, genres, etc.
+
 ## Problem ##
   > Describe the problem your product solves.
 
+  People have to go through extra steps to find information about a music artists, such as going through multiple sites/searches
+
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+
+Do not have to google and can just access information about a music artist and store it.
+
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.

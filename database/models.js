@@ -6,7 +6,8 @@ const MusicArtist = connection.define('mArtist', {
   name: { type: Sequelize.STRING, allowNull: false} ,
   listeners: { type: Sequelize.INTEGER },
   plays: { type: Sequelize.INTEGER },
-  genres: { type: Sequelize.STRING }
+  genres: { type: Sequelize.STRING },
+  image: { type: Sequelize.STRING }
 })
 
 connection.sync()
