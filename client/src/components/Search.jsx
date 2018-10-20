@@ -29,6 +29,7 @@ class Search extends React.Component {
     return (
       <div>
        <input onChange={this.handleInputChange}></input>
+       <br/>
        <button onClick={this.handleSearchClick}>Search for Artist</button>
        <button onClick={this.handleDeleteClick}>Delete Artist</button>
       </div>

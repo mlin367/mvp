@@ -7,10 +7,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      artists: []
+      artists: [],
+      sortBy: 'followers'
     };
     this.search = this.search.bind(this);
     this.delete = this.delete.bind(this);
+    this.handleFollowers = this.handleFollowers.bind(this);
+    this.handleAlphabetically = this.handleAlphabetically.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +34,9 @@ class App extends React.Component {
   }
 
   fetch() {
-    axios.get('/artists')
+    axios.get('/artists', {
+      params: {sortBy: this.state.sortBy}
+    })
     .then(res => {
       console.log(res)
       this.setState({
@@ -44,7 +49,7 @@ class App extends React.Component {
   }
 
   delete(artist) {
-    axios.delete('/artists' ,{
+    axios.delete('/artists', {
       params: {name: artist}
     })
     .then(res => {
@@ -56,11 +61,29 @@ class App extends React.Component {
     })
   }
 
+  handleFollowers() {
+    this.setState({
+      sortBy: "followers"
+    })
+    this.fetch();
+  }
+
+  handleAlphabetically() {
+    this.setState({
+      sortBy: "name"
+    })
+    this.fetch();
+  }
+
   render() {
     return (
       <div>
-        <h1> Spotify Artist Data </h1>
-        <Search search={this.search} delete={this.delete}/>
+        <div className="top">
+          <h1> Spotify Artist Data </h1>
+          <Search search={this.search} delete={this.delete}/>
+          <button onClick={this.handleFollowers}>Sort by Followers</button>
+          <button onClick={this.handleAlphabetically}>Sort Alphabetically</button>
+        </div>
         <List artists={this.state.artists} />
       </div>
     );

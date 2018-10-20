@@ -2,9 +2,9 @@ import React from 'react';
 
 const ListEntry = (props) => (
   <div>
-    <li>{props.artist.name}</li>
-    <div>
-      <img src={props.artist.image}></img>
+    <li className="list">{props.artist.name}</li>
+    <img src={props.artist.image}></img>
+    <div className="info">
       <p>Followers: {props.artist.followers}</p>
       <p>Genres: {props.artist.genres}</p>
       <p>Top Tracks: {props.artist.topTracks}</p>   

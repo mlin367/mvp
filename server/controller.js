@@ -5,7 +5,13 @@ const getToken = require('../config');
 
 module.exports = {
   get: (req, res) => {
-    MusicArtist.findAll({})
+    let order;
+    if (req.query.sortBy === 'followers') {
+      order = 'DESC';
+    } else {
+      order = 'ASC';
+    }
+    MusicArtist.findAll({order: [[`${req.query.sortBy}`, `${order}`]]})
       .then(artists => {
         res.status(200).send(artists);
       })
